@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Search Recipes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #fceabb, #f8b500);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .search-box {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      width: 90%;
+      max-width: 500px;
+      transition: transform 0.3s ease;
+    }
+
+    .search-box:hover {
+      transform: scale(1.02);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #444;
+      font-size: 1.8em;
+    }
+
+    #searchForm {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    #searchInput {
+      padding: 14px 16px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      outline: none;
+      transition: box-shadow 0.3s ease;
+    }
+
+    #searchInput:focus {
+      box-shadow: 0 0 12px rgba(255, 187, 0, 0.6);
+    }
+
+    #searchButton {
+      padding: 14px 20px;
+      font-size: 1rem;
+      background: #f8b500;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    #searchButton:hover {
+      background: #e6a200;
+    }
+
+    .info {
+      margin-top: 20px;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    @media screen and (max-width: 500px) {
+      .search-box {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="search-box">
+    <h1>Search Recipes 🍽️</h1>
+    <form id="searchForm">
+      <input type="text" id="searchInput" placeholder="Enter dish name..." required />
+      <button type="submit" id="searchButton">Search</button>
+    </form>
+    <div class="info">Try: chicken65, paneer, mangojuice...</div>
+  </div>
+
+  <script>
+    document.getElementById("searchForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const dishName = document.getElementById("searchInput").value.trim().toLowerCase();
+
+      if (dishName) {
+        if (["chicken", "mutton", "fish", "prawn","crab"].includes(dishName)) {
+          window.location.href = `nonveg.html?dish=${encodeURIComponent(dishName)}`;
+        } else if (["paneer", "dal", "vegetable", "vegbiryani", "paneertikka", "vegpulao"].includes(dishName)) {
+          window.location.href = `vegeterianfood.html?dish=${encodeURIComponent(dishName)}`;
+        } else if (["juice", "juices", "mango", "mangojuice", "orangejuice"].includes(dishName)) {
+          window.location.href = `juices2.html?dish=${encodeURIComponent(dishName)}`;
+        } else {
+          alert("❌ Dish not found in our recipe collection.");
+        }
+      } else {
+        alert("⚠️ Please enter a dish name.");
+      }
+    });
+  </script>
+</body>
+</html>
